@@ -1,15 +1,33 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import produto.ProdutoEletronico;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner teclado = new Scanner(System.in);
+        ProdutoEletronico[] produtos = new ProdutoEletronico[3];
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        System.out.println("=== CADASTRO DE PRODUTOS ELETRÔNICOS ===");
+        for (int i = 0; i < produtos.length; i++) {
+            System.out.printf("\nProduto %d:\n", i + 1);
+            System.out.print("Nome: ");
+            String nome = teclado.nextLine();
+
+            System.out.print("Preço: ");
+            double preco = teclado.nextDouble();
+
+            System.out.print("Garantia (meses): ");
+            int garantia = teclado.nextInt();
+            teclado.nextLine();
+
+            produtos[i] = new ProdutoEletronico(nome, preco, garantia);
         }
+
+        System.out.println("\n=== PRODUTOS CADASTRADOS ===");
+        for (ProdutoEletronico p : produtos) {
+            p.exibirDetalhes();
+            System.out.println();
+        }
+
+        teclado.close();
     }
 }
